@@ -92,40 +92,41 @@ var educations = {
 }
 
 
-
-
- var formattedName = HTMLheaderName.replace("%data%", bio.name);
- var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
- var formattedbioPic = HTMLbioPic.replace("%data%", bio.biopic);
- $("#header").append(formattedName);
- $("#header").append(formattedRole);
- $("#header").append(formattedbioPic);
- $("#header").append(HTMLwelcomeMsg.replace("%data%", "welcome to my resumé"));
-
-var formattedContactInfo = [];
-formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
-formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
-formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
-
-for(i in formattedContactInfo) {
-    $("#topContacts").append(formattedContactInfo[i]);
-    $("#footerContacts").append(formattedContactInfo[i]);
-}
-
-
-if(bio.skills.length > 0)
+bio.display = function()
 {
-     $("#header").append(HTMLskillsStart);
+
+     var formattedName = HTMLheaderName.replace("%data%", bio.name);
+     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+     var formattedbioPic = HTMLbioPic.replace("%data%", bio.biopic);
+     $("#header").append(formattedName);
+     $("#header").append(formattedRole);
+     $("#header").append(formattedbioPic);
+     $("#header").append(HTMLwelcomeMsg.replace("%data%", "welcome to my resumé"));
+
+    var formattedContactInfo = [];
+    formattedContactInfo.push(HTMLemail.replace("%data%", bio.contacts.email));
+    formattedContactInfo.push(HTMLgithub.replace("%data%", bio.contacts.github));
+    formattedContactInfo.push(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+    formattedContactInfo.push(HTMLlocation.replace("%data%", bio.contacts.location));
+
+    for(i in formattedContactInfo) {
+        $("#topContacts").append(formattedContactInfo[i]);
+        $("#footerContacts").append(formattedContactInfo[i]);
+    }
 
 
-     for(i in bio.skills) {
-        $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+    if(bio.skills.length > 0)
+    {
+         $("#header").append(HTMLskillsStart);
+         for(i in bio.skills) {
+            $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
+        }
     }
 }
 
-function displayWork(){
+bio.display();
 
+work.display =  function(){
     for( job in work.jobs)
     {
 
@@ -143,7 +144,7 @@ function displayWork(){
     }
 }
 
-displayWork();
+work.display();
 
 project.display = function()
 {
